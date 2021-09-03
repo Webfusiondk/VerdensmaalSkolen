@@ -1,0 +1,48 @@
+<div>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Position Column -->
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> Id. </th>
+            <td mat-cell *matCellDef="let element"> {{Reader.Id}} </td>
+    </ng-container>
+    
+    <!-- Name Column -->
+    <ng-container matColumnDef="Humidity">
+        <th mat-header-cell *matHeaderCellDef> Fugtighed </th>
+        <td mat-cell *matCellDef="let element"> {{Reader.Humidity}} </td>
+    </ng-container>
+    
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Temperature">
+        <th mat-header-cell *matHeaderCellDef> Temperature </th>
+        <td mat-cell *matCellDef="let element"> {{Reader.Temperature}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Light">
+        <th mat-header-cell *matHeaderCellDef> Lys Styrke </th>
+        <td mat-cell *matCellDef="let element"> {{Reader.Light}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Dato </th>
+        <td mat-cell *matCellDef="let element"> {{Reader.Time}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Ingen match på søgningen "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
