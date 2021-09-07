@@ -1,13 +1,13 @@
 export class Reader{
-    Id: number;
+    RoomId: string;
     Time: Date;
     Humidity: number;
     Temperature: number;
     Light: number;
     IsLightOn: boolean;
     
-    constructor(id:number, time:Date,humidity:number, temperature:number, light:number, islighton:boolean){
-        this.Id = id;
+    constructor(roomId:string, time:Date, humidity:number, temperature:number, light:number, islighton:boolean){
+        this.RoomId = roomId;
         this.Time = time;
         this.Humidity = humidity;
         this.Temperature = temperature;

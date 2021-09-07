@@ -7,6 +7,10 @@ import { DataTabelComponent } from './data-tabel/data-tabel.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,12 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     MatPaginatorModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule,
+    BrowserModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

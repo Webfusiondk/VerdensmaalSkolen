@@ -1,21 +1,17 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Reader } from '../model/Reader-Model';
+import { Injectable } from '@angular/core';
 
-@Component({
-  selector: 'app-api-fetcher',
-  templateUrl: './api-fetcher.component.html',
-  styleUrls: ['./api-fetcher.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class ApiFetcherComponent implements OnInit {
+
+export class ApiFetcherComponent {
 
   constructor(private http : HttpClient) { }
-
-  ngOnInit(): void {
-  }
-
   
   GetAllReaderData(){
-    return this.http.get<Reader[]>(``)
+    console.log("Trying to get data");
+    return this.http.get<Reader[]>('https://localhost:44338/data/all');
   }
 }
