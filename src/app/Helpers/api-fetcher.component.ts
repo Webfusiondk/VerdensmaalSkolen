@@ -11,7 +11,6 @@ export class ApiFetcherComponent {
   constructor(private http : HttpClient) { }
   
   GetAllReaderData(){
-    console.log("Trying to get data");
     return this.http.get<Reader[]>('https://localhost:44338/data/all');
   }
 }

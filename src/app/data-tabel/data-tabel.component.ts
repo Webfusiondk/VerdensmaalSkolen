@@ -13,13 +13,11 @@ import { ApiFetcherComponent } from '../Helpers/api-fetcher.component';
 export class DataTabelComponent implements OnInit {
   readerData: any;
   dataSource;
-  displayedColumns: string[] = ['Room Id', 'Humidity', 'Temperature', 'Light', 'Date'];
+  displayedColumns: string[] = ['RoomNumber', 'Humidity', 'Temperature', 'Light', 'Date'];
 
   constructor(private apiFetcher: ApiFetcherComponent) { 
 
   }
-  
-  
   
   ngOnInit(): void {
     this.load_data();
@@ -32,9 +30,13 @@ export class DataTabelComponent implements OnInit {
   }
   
   async load_data() {
-    await this.apiFetcher.GetAllReaderData().toPromise().then(res => this.readerData = res);
-    console.log(this.readerData);
-    this.dataSource = new MatTableDataSource<Reader>(this.readerData);
-    this.dataSource.paginator = this.paginator;
+    await this.apiFetcher.GetAllReaderData()
+    .subscribe(data => {
+      this.readerData = data;
+      this.dataSource = new MatTableDataSource<Reader>(this.readerData);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.readerData);
+      console.log(this.dataSource);
+  })
   }
 }
