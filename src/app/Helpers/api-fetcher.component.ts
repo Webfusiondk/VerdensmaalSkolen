@@ -11,6 +11,14 @@ export class ApiFetcherComponent {
   constructor(private http : HttpClient) { }
   
   GetAllReaderData(){
-    return this.http.get<Reader[]>('https://localhost:44338/data/all');
+    return this.http.get<Reader[]>('https://localhost:5001/data/all');
+  }
+
+  GetAllRoomNrs(){
+    return this.http.get<Reader[]>('https://localhost:5001/data/rooms');
+  }
+
+  GetReaderDataByRoomNr(){
+    return this.http.get<Reader[]>('https://localhost:5001/data/room');
   }
 }
