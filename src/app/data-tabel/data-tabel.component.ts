@@ -20,7 +20,7 @@ export class DataTabelComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.load_data();
+    this.load_all_data();
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -29,7 +29,7 @@ export class DataTabelComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
-  async load_data() {
+  async load_all_data() {
     await this.apiFetcher.GetAllReaderData()
     .subscribe(data => {
       this.readerData = data;
@@ -39,4 +39,27 @@ export class DataTabelComponent implements OnInit {
       console.log(this.dataSource);
   })
   }
+
+  async load_room_data(){
+    await this.apiFetcher.GetReaderDataByRoomNr()
+    .subscribe(data => {
+      this.readerData = data;
+      this.dataSource = new MatTableDataSource<Reader>(this.readerData);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.readerData);
+      console.log(this.dataSource);
+  })
+  }
+
+  async load_rooms(){
+    await this.apiFetcher.GetAllRoomNrs()
+    .subscribe(data => {
+      this.readerData = data;
+      this.dataSource = new MatTableDataSource<Reader>(this.readerData);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.readerData);
+      console.log(this.dataSource);
+  })
+  }
+
 }
