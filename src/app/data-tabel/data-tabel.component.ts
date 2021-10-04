@@ -13,6 +13,7 @@ import { ApiFetcherComponent } from '../Helpers/api-fetcher.component';
 export class DataTabelComponent implements OnInit {
   readerData: any;
   dataSource;
+  rooms;
   displayedColumns: string[] = ['RoomNumber', 'Humidity', 'Temperature', 'Light', 'Date'];
 
   constructor(private apiFetcher: ApiFetcherComponent) { 
@@ -21,6 +22,7 @@ export class DataTabelComponent implements OnInit {
   
   ngOnInit(): void {
     this.load_all_data();
+    this.load_rooms();
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -40,8 +42,8 @@ export class DataTabelComponent implements OnInit {
   })
   }
 
-  async load_room_data(){
-    await this.apiFetcher.GetReaderDataByRoomNr()
+  async load_room_data(roomNr){
+    await this.apiFetcher.GetReaderDataByRoomNr(roomNr)
     .subscribe(data => {
       this.readerData = data;
       this.dataSource = new MatTableDataSource<Reader>(this.readerData);
@@ -55,10 +57,8 @@ export class DataTabelComponent implements OnInit {
     await this.apiFetcher.GetAllRoomNrs()
     .subscribe(data => {
       this.readerData = data;
-      this.dataSource = new MatTableDataSource<Reader>(this.readerData);
-      this.dataSource.paginator = this.paginator;
+      this.rooms = this.readerData;
       console.log(this.readerData);
-      console.log(this.dataSource);
   })
   }
 
