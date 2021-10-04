@@ -4,7 +4,7 @@
             <mat-label>Vælg rum</mat-label>
             <mat-select>
                 <li *ngFor="let item of rooms">
-                    <mat-option value={{item}>{{item}}</mat-option>
+                    <mat-option (click)="load_room_data(item)" value={{item}>{{item}}</mat-option>
                 </li>
             </mat-select>
           </mat-form-field>
