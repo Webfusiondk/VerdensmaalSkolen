@@ -18,7 +18,7 @@ export class ApiFetcherComponent {
     return this.http.get<Reader[]>('https://localhost:5001/data/rooms');
   }
 
-  GetReaderDataByRoomNr(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/room');
+  GetReaderDataByRoomNr(roomNr){
+    return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`);
   }
 }
