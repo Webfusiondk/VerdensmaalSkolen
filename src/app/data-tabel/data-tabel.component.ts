@@ -37,8 +37,6 @@ export class DataTabelComponent implements OnInit {
       this.readerData = data;
       this.dataSource = new MatTableDataSource<Reader>(this.readerData);
       this.dataSource.paginator = this.paginator;
-      console.log(this.readerData);
-      console.log(this.dataSource);
   })
   }
 
@@ -48,9 +46,11 @@ export class DataTabelComponent implements OnInit {
       this.readerData = data;
       this.dataSource = new MatTableDataSource<Reader>(this.readerData);
       this.dataSource.paginator = this.paginator;
-      console.log(this.readerData);
-      console.log(this.dataSource);
   })
+  }
+
+  test(){
+    this.apiFetcher.Test()
   }
 
   async load_rooms(){
@@ -58,7 +58,6 @@ export class DataTabelComponent implements OnInit {
     .subscribe(data => {
       this.readerData = data;
       this.rooms = this.readerData;
-      console.log(this.readerData);
   })
   }
 

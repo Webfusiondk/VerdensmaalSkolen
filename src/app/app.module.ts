@@ -14,6 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import { ChartComponent } from './chart/chart.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
