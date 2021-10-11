@@ -9,15 +9,6 @@ let header = new HttpHeaders({
 });
 let options = { headers: header};
 
-
-let header = new HttpHeaders({
-
-  'ApiKey': 'iCMrmPuB2KKtscylfIGoFfdKl8x9SIWBdMQbZHH0vn1O2xcUejjog9QXyY5D'
-
-});
-
-let options = { headers: header};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +29,6 @@ export class ApiFetcherComponent {
   }
 
   GetAllReaderData(){
-<<<<<<< HEAD
     return this.http.get<Reader[]>('https://localhost:5001/data/all',options);
   }
 
@@ -63,17 +53,6 @@ export class ApiFetcherComponent {
 
   UpdateSession(){
     return this.http.post('https://localhost:5001/token/Update', this.tokenSubject.value, options) 
-=======
-    return this.http.get<Reader[]>('https://localhost:5001/data/all', options);
-  }
-
-  GetAllRoomNrs(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/rooms', options);
-  }
-
-  GetReaderDataByRoomNr(roomNr){
-    return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`, options);
->>>>>>> 327c0cb97aed8b40d62b8240990d620fd4ef9656
   }
 
   
