@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 ) {}
 
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token = this.apiFetcher.GetLocalToken;
+    const token = this.apiFetcher.GetLocalToken();
     this.apiFetcher.UpdateSession().subscribe();
     if (token) {
         // authorised so return true
@@ -19,7 +19,7 @@ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/data']);
+    this.router.navigate(['']);
     console.log("Auth guard False")
     return false;
 }

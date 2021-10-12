@@ -40,6 +40,10 @@ export class ApiFetcherComponent {
     return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`,options);
   }
 
+  ValidateSession(token){
+    return this.http.get(`https://localhost:5001/token/validate?token=${token}`, options)
+  }
+
   Test(){
     return this.http.get<Token>('https://localhost:5001/token/GetToken', options)
     .subscribe(data =>{

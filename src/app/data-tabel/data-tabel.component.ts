@@ -23,6 +23,7 @@ export class DataTabelComponent implements OnInit {
   ngOnInit(): void {
     this.load_all_data();
     this.load_rooms();
+    this.SessionActive();
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -59,6 +60,15 @@ export class DataTabelComponent implements OnInit {
       this.readerData = data;
       this.rooms = this.readerData;
   })
+  }
+
+  SessionActive(){
+    this.apiFetcher.ValidateSession(this.apiFetcher.token).subscribe(data =>{
+      console.log(data)
+      if (data != true) {
+        localStorage.removeItem("token")
+      }
+    })
   }
 
 }

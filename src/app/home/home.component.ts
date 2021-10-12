@@ -9,6 +9,14 @@ export class HomeComponent implements OnInit {
   constructor(private apiFetcher : ApiFetcherComponent) { }
 
   ngOnInit(): void {
+    this.SessionActive();
   }
-
+  
+  SessionActive(){
+    this.apiFetcher.ValidateSession(this.apiFetcher.token).subscribe(data =>{
+      if (data != true) {
+        localStorage.removeItem("token")
+      }
+    })
+  }
 }
