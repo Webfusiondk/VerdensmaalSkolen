@@ -16,6 +16,7 @@ let options = { headers: header};
 
 export class ApiFetcherComponent {
 
+  sessionToken: any;
   tempToken: Token;
   token: Observable<Token>
   private tokenSubject: BehaviorSubject<Token>;
@@ -29,23 +30,27 @@ export class ApiFetcherComponent {
   }
 
   GetAllReaderData(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/all', options);
+    return this.http.get<Reader[]>('http://192.168.1.116:25252/data/all', options);
   }
 
   GetAllRoomNrs(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/rooms', options);
+    return this.http.get<Reader[]>('http://192.168.1.116:25252/data/rooms', options);
   }
 
   GetReaderDataByRoomNr(roomNr){
-    return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`, options);
+    return this.http.get<Reader[]>(`http://192.168.1.116:25252/data/room?roomNr=${roomNr}`, options);
   }
 
-  ValidateSession(token){
-    return this.http.get(`https://localhost:5001/token/validate?token=${token}`, options)
+  ValidateSession(){
+
+    this.tokenSubject.subscribe(data => this.sessionToken = data["token"])
+
+    return this.http.get(`http://192.168.1.116:25252/token/validate?token=${this.sessionToken}`, options)
+
   }
 
   Test(){
-    return this.http.get<Token>('https://localhost:5001/token/GetToken', options)
+    return this.http.get<Token>('http://192.168.1.116:25252/token/GetToken', options)
     .subscribe(data =>{
       console.log(data)
       this.tempToken = <Token>data;
@@ -55,8 +60,11 @@ export class ApiFetcherComponent {
     })
   }
 
+  
   UpdateSession(){
-    return this.http.post('https://localhost:5001/token/Update', this.tokenSubject.value, options) 
+    this.tokenSubject.subscribe(data => this.sessionToken = data["token"])
+
+    return this.http.get(`http://192.168.1.116:25252/token/Update?token=${this.sessionToken}`, options) 
   }
 
   

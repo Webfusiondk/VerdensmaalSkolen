@@ -63,7 +63,7 @@ export class DataTabelComponent implements OnInit {
   }
 
   SessionActive(){
-    this.apiFetcher.ValidateSession(this.apiFetcher.token).subscribe(data =>{
+    this.apiFetcher.ValidateSession().subscribe(data =>{
       console.log(data)
       if (data != true) {
         localStorage.removeItem("token")

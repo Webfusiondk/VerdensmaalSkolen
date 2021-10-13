@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   }
   
   SessionActive(){
-    this.apiFetcher.ValidateSession(this.apiFetcher.token).subscribe(data =>{
+    this.apiFetcher.ValidateSession().subscribe(data =>{
       if (data != true) {
         localStorage.removeItem("token")
       }
