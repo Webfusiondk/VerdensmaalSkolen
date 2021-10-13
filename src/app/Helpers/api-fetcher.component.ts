@@ -29,15 +29,15 @@ export class ApiFetcherComponent {
   }
 
   GetAllReaderData(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/all',options);
+    return this.http.get<Reader[]>('https://localhost:5001/data/all', options);
   }
 
   GetAllRoomNrs(){
-    return this.http.get<Reader[]>('https://localhost:5001/data/rooms',options);
+    return this.http.get<Reader[]>('https://localhost:5001/data/rooms', options);
   }
 
   GetReaderDataByRoomNr(roomNr){
-    return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`,options);
+    return this.http.get<Reader[]>(`https://localhost:5001/data/room?roomNr=${roomNr}`, options);
   }
 
   ValidateSession(token){
