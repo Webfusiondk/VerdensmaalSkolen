@@ -42,6 +42,7 @@ void setup() {
 
   //Start the sensors
   dht.begin();
+  
   //Set light sensor pins
   pinMode(ledPin, OUTPUT);  // Set lepPin - 9 pin as an output
   pinMode(pResistor, INPUT);// Set pResistor - A0 pin as an input (optional)
@@ -51,10 +52,9 @@ void setup() {
   temp = dht.readTemperature();
   lightVal = analogRead(pResistor);
 
-  //Collect sensor data in a string for easy access
+  //Combine sensor data in a string for easy access
   String queryString = String("?data=") + String(temp) + String(";") + String(hum) + String(";") + String(lightVal);
-  Serial.print(queryString);
-
+  
   // start the Ethernet connection:
   Serial.println("Initialize Ethernet with DHCP:");
   if (Ethernet.begin(mac) == 0) {
@@ -111,7 +111,7 @@ void loop() {
     if (len > 80) len = 80;
     client.read(buffer, len);
     if (printWebData) {
-      Serial.write(buffer, len); // show in the serial monitor (slows some boards)
+      Serial.write(buffer, len); // show in the serial monitor
     }
     byteCount = byteCount + len;
   }
@@ -134,7 +134,7 @@ void loop() {
     Serial.println();
 
     while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
+        delay(1); // do nothing
       }
     }
     //Delay 5 seconds
